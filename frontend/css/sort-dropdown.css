@@ -1,0 +1,34 @@
+/* Sorting Dropdown Fix for Mobile */
+.sort-select {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    border: none;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    padding: 8px 25px 8px 10px;
+    /* Extra padding right for arrow */
+    outline: none;
+    cursor: pointer;
+    border-radius: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23C5A059'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 5px center;
+    background-size: 20px;
+}
+
+.sort-select option {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    padding: 10px;
+}
+
+/* Force dark background on options for WebKit browsers */
+@media (prefers-color-scheme: dark) {
+    .sort-select option {
+        background-color: #0F0F0F;
+        color: #F5F5F3;
+    }
+}

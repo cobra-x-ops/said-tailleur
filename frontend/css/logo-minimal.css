@@ -1,0 +1,33 @@
+/* Logo - Simple & Minimal (Left Side) */
+.logo {
+    display: inline-flex;
+    align-items: center;
+    transition: opacity 0.3s ease;
+}
+
+.logo:hover {
+    opacity: 0.8;
+}
+
+.logo-img {
+    height: 28px;
+    /* Much smaller and discreet */
+    width: auto;
+    transition: all 0.3s ease;
+}
+
+/* Slightly smaller when scrolled */
+header.scrolled .logo-img {
+    height: 24px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .logo-img {
+        height: 26px;
+    }
+
+    header.scrolled .logo-img {
+        height: 22px;
+    }
+}

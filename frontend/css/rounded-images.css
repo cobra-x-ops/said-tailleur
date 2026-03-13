@@ -1,0 +1,69 @@
+/* Rounded Borders for All Images - Luxury Touch */
+
+/* Product Cards */
+.product-card {
+    border-radius: 12px !important;
+    overflow: hidden;
+}
+
+.img-container {
+    border-radius: 12px;
+}
+
+.img-container img {
+    border-radius: 12px;
+}
+
+/* Gallery Items */
+.gallery-item {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.gallery-item img {
+    border-radius: 12px;
+}
+
+/* About Section Image */
+.about-img img {
+    border-radius: 12px !important;
+}
+
+/* Instagram Feed */
+.insta-item {
+    border-radius: 8px !important;
+    overflow: hidden;
+}
+
+.insta-item img {
+    border-radius: 8px;
+}
+
+/* Map Container */
+.map-container {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.map-container iframe {
+    border-radius: 12px;
+}
+
+/* Product Detail Page Images */
+.detail-img {
+    border-radius: 12px;
+}
+
+/* Responsive - slightly smaller radius on mobile */
+@media (max-width: 768px) {
+
+    .product-card,
+    .img-container,
+    .img-container img,
+    .gallery-item,
+    .gallery-item img,
+    .about-img img,
+    .map-container {
+        border-radius: 8px !important;
+    }
+}

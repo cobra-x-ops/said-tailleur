@@ -1,0 +1,334 @@
+/* 
+   PREMIUM DASHBOARD THEME 2025
+   Extension of Luxe Theme
+*/
+
+.dashboard-container {
+    padding-top: 140px;
+    /* Header space */
+    padding-bottom: 100px;
+    background: var(--bg-main);
+    color: var(--text-main);
+    min-height: 100vh;
+}
+
+.dashboard-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* SIDEBAR */
+.sidebar-profile {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.avatar-circle {
+    width: 80px;
+    height: 80px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-serif);
+    font-size: 32px;
+    color: var(--gold);
+}
+
+.menu-list {
+    list-style: none;
+    background: var(--bg-secondary);
+    padding: 20px;
+    border: 1px solid var(--border);
+}
+
+.menu-item {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 15px 0;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: 0.3s;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-item:last-child {
+    border-bottom: none;
+}
+
+.menu-item:hover,
+.menu-item.active {
+    color: var(--gold);
+    background: rgba(255, 255, 255, 0.03);
+    padding-left: 15px;
+    /* Increase padding for slide */
+}
+
+.menu-item svg {
+    margin-right: 12px;
+}
+
+.mobile-only {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+
+    .menu-item:hover,
+    .menu-item.active {
+        background: transparent;
+        padding-left: 0;
+    }
+}
+
+/* MAIN CONTENT */
+.welcome-header {
+    margin-bottom: 40px;
+    animation: fadeUp 0.6s ease;
+}
+
+.welcome-title {
+    font-family: var(--font-serif);
+    font-size: 36px;
+    color: var(--text-main);
+}
+
+.welcome-subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: 5px;
+}
+
+/* WALLET CARD (DISCOUNT) */
+.wallet-card {
+    background: var(--bg-secondary);
+    color: var(--text-main);
+    border: 1px solid var(--gold);
+    padding: 40px;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    animation: fadeUp 0.8s ease;
+}
+
+.wallet-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    background: repeating-linear-gradient(45deg,
+            rgba(255, 255, 255, 0.03),
+            rgba(255, 255, 255, 0.03) 1px,
+            transparent 1px,
+            transparent 10px);
+}
+
+.discount-label {
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 10px;
+    display: block;
+}
+
+.discount-amount {
+    font-family: var(--font-serif);
+    font-size: 48px;
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+.coupon-container {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px dashed rgba(255, 255, 255, 0.3);
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.coupon-container:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: var(--gold);
+}
+
+.coupon-code {
+    font-family: 'Courier New', monospace;
+    font-size: 16px;
+    letter-spacing: 0.1em;
+    margin-right: 15px;
+}
+
+.copy-icon {
+    font-size: 14px;
+    color: var(--gold);
+}
+
+/* STATS GRID */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+    animation: fadeUp 1s ease;
+}
+
+.stat-card {
+    background: var(--bg-secondary);
+    padding: 30px;
+    border: 1px solid var(--border);
+    text-align: center;
+}
+
+.stat-value {
+    font-family: var(--font-serif);
+    font-size: 28px;
+    color: var(--text-main);
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-container {
+        padding-top: 100px;
+        padding-bottom: 120px;
+    }
+
+    .dashboard-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 0 15px;
+    }
+
+    .dashboard-layout aside {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: var(--bg-secondary);
+        border-top: 1px solid var(--border);
+        z-index: 1000;
+        padding: 0;
+        box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .sidebar-profile,
+    .desktop-only {
+        display: none !important;
+    }
+
+    .menu-list {
+        display: flex;
+        justify-content: space-around;
+        padding: 0;
+        margin: 0;
+        border: none;
+        background: transparent;
+    }
+
+    .menu-item {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 9px;
+        padding: 12px 0;
+        border-bottom: none;
+        text-align: center;
+        gap: 6px;
+        flex: 1;
+        opacity: 0.6;
+    }
+
+    .menu-item.active {
+        opacity: 1;
+        color: var(--gold);
+        padding-left: 0;
+        /* Reset desktop slide */
+        border-top: 2px solid var(--gold);
+    }
+
+    .menu-item span.menu-text {
+        display: block;
+        /* Show text on mobile but small */
+        font-size: 9px;
+    }
+
+    .menu-item svg {
+        width: 20px;
+        height: 20px;
+        margin-bottom: 2px;
+    }
+
+    .mobile-hide {
+        display: none !important;
+    }
+
+    .mobile-only {
+        display: flex !important;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .stat-card {
+        padding: 25px 20px;
+    }
+
+    .stat-value {
+        font-size: 28px;
+    }
+
+    .welcome-title {
+        font-size: 24px;
+    }
+
+    .wallet-card {
+        padding: 25px 20px;
+    }
+
+    .discount-amount {
+        font-size: 20px;
+    }
+
+    .coupon-container {
+        padding: 12px 15px;
+    }
+}

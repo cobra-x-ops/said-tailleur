@@ -1,0 +1,21 @@
+{
+  "name": "Tailleur Annakhil Luxury",
+  "short_name": "Annakhil",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#c5a059",
+  "description": "Atelier de couture de luxe et retouches de précision.",
+  "icons": [
+    {
+      "src": "logo_annakhil.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "logo_annakhil.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

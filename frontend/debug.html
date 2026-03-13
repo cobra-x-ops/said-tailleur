@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Shop Debug</title>
+    <style>
+        body {
+            font-family: monospace;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #fff;
+        }
+
+        pre {
+            background: #2a2a2a;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .success {
+            color: #0f0;
+        }
+
+        .error {
+            color: #f00;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px 0;
+            cursor: pointer;
+            background: #0070f3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Shop API Diagnostic</h1>
+    <button onclick="testAPI()">Test API Connection</button>
+    <button onclick="testShopPage()">Open Shop Page</button>
+
+    <h2>Results:</h2>
+    <div id="results"></div>
+
+    <script>
+        const results = document.getElementById('results');
+
+        async function testAPI() {
+            results.innerHTML = '<p>Testing API...</p>';
+
+            try {
+                // Test 1: Basic API call
+                const url1 = 'http://localhost:3030/api/products';
+                results.innerHTML += `<p>Calling: ${url1}</p>`;
+                const res1 = await fetch(url1);
+                const data1 = await res1.json();
+                results.innerHTML += `<pre class="success">✓ API Response:\n${JSON.stringify(data1, null, 2)}</pre>`;
+
+                // Test 2: With cache busting
+                const url2 = `http://localhost:3030/api/products?_t=${Date.now()}`;
+                results.innerHTML += `<p>Calling with cache bust: ${url2}</p>`;
+                const res2 = await fetch(url2);
+                const data2 = await res2.json();
+                results.innerHTML += `<pre class="success">✓ With cache bust:\n${JSON.stringify(data2, null, 2)}</pre>`;
+
+                // Test 3: Check if products have all required fields
+                if (data2.data && data2.data.length > 0) {
+                    const product = data2.data[0];
+                    results.innerHTML += `<h3>First Product Fields:</h3>`;
+                    results.innerHTML += `<pre class="success">`;
+                    results.innerHTML += `title: ${product.title}\n`;
+                    results.innerHTML += `slug: ${product.slug}\n`;
+                    results.innerHTML += `price: ${product.price}\n`;
+                    results.innerHTML += `currency: ${product.currency}\n`;
+                    results.innerHTML += `mainImage: ${product.mainImage}\n`;
+                    results.innerHTML += `stock: ${product.stock}\n`;
+                    results.innerHTML += `</pre>`;
+                }
+
+            } catch (err) {
+                results.innerHTML += `<pre class="error">✗ Error: ${err.message}\n${err.stack}</pre>`;
+            }
+        }
+
+        function testShopPage() {
+            window.open('shop.html', '_blank');
+        }
+
+        // Auto-run on load
+        testAPI();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livraison & Retours | Tailleur Annakhil Luxury</title>
+    <link rel="icon" href="logo_annakhil.png" type="image/png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/luxe-theme.css">
+    <link rel="stylesheet" href="css/responsive-devices.css">
+    <style>
+        /* Custom Page Styling */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 60px auto 0;
+            padding: 0 20px;
+        }
+
+        .feature-card {
+            background: var(--bg-secondary);
+            padding: 40px 30px;
+            border-radius: 15px;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), #d4af37);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #f5f5f5, #eaeaea);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 25px;
+            transition: all 0.4s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            background: linear-gradient(135deg, var(--gold), #d4af37);
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .feature-card h3 {
+            font-family: var(--font-serif);
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        /* Delivery Timeline */
+        .timeline-section {
+            padding: 100px 0;
+            background: var(--bg-main);
+        }
+
+        .timeline-wrapper {
+            max-width: 900px;
+            margin: 60px auto 0;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .timeline-wrapper::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--gold), transparent);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 60px;
+            position: relative;
+            opacity: 0;
+            animation: slideIn 0.8s ease forwards;
+        }
+
+        .timeline-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .timeline-item:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .timeline-item:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .timeline-item:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: var(--gold);
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px var(--gold-light);
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 4px rgba(197, 160, 89, 0.2);
+            }
+
+            50% {
+                box-shadow: 0 0 0 8px rgba(197, 160, 89, 0.1);
+            }
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: var(--bg-secondary);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .timeline-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: var(--gold);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .timeline-content h3 {
+            font-family: var(--font-serif);
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        /* Policy Content - Enhanced */
+        .policy-content {
+            max-width: 900px;
+            margin: 100px auto;
+            padding: 0 20px;
+        }
+
+        .policy-section {
+            margin-bottom: 70px;
+            background: var(--bg-secondary);
+            padding: 50px;
+            border-radius: 15px;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+            transition: all 0.4s ease;
+        }
+
+        .policy-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
+        }
+
+        .policy-section h2 {
+            font-family: var(--font-serif);
+            font-size: 32px;
+            margin-bottom: 25px;
+            color: var(--text-main);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .policy-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--gold);
+        }
+
+        .policy-section p {
+            line-height: 1.9;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .policy-section ul {
+            list-style: none;
+            margin-left: 0;
+            color: var(--text-muted);
+        }
+
+        .policy-section li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            line-height: 1.8;
+        }
+
+        .policy-section li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: var(--bg-secondary);
+            text-align: center;
+            color: var(--text-main);
+            border-top: 1px solid var(--border);
+        }
+
+        .cta-section h2 {
+            font-family: var(--font-serif);
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 16px;
+            opacity: 0.8;
+            margin-bottom: 35px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .timeline-wrapper::before {
+                left: 20px;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+
+            .timeline-item {
+                padding-left: 60px;
+            }
+
+            .policy-section {
+                padding: 30px 25px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="luxe-header">
+        <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
+            <a href="index.html" class="brand-logo-wrapper">
+                <img src="logo_annakhil.png" alt="Annakhil Logo" class="brand-logo-img"
+                    style="width:35px; height:35px; object-fit:contain;">
+                <span class="brand-name" style="font-size:24px;">ANNAKHIL</span>
+            </a>
+            <nav class="nav-links">
+                <a href="shop.html" class="nav-link">Boutique</a>
+                <a href="about.html" class="nav-link">À Propos</a>
+                <a href="index.html#atelier" class="nav-link">Atelier</a>
+                <a href="index.html#sur-mesure" class="nav-link">Sur Mesure</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+            </nav>
+            <div class="header-actions" style="display:flex; gap:25px; align-items:center;">
+                <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Menu" style="display:none;">
+                    <span></span><span></span><span></span>
+                </button>
+                <a href="dashboard.html" class="nav-link" style="font-size:18px;" title="Compte">👤</a>
+                <a href="#" class="nav-link" style="font-size:18px; position:relative;" title="Panier" data-cart-toggle>
+                    🛒 <span class="cart-count"
+                        style="position:absolute; top:-8px; right:-10px; background:var(--gold); color:white; font-size:10px; padding:2px 6px; border-radius:10px;">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="premium-hero">
+        <div class="hero-overlay-luxe"></div>
+        <div class="container">
+            <div data-reveal style="max-width:800px; margin:0 auto; text-align:center;">
+                <span class="subtitle" style="display:block; margin-bottom:20px;">TRADITION & MODERNITÉ DEPUIS
+                    1990</span>
+                <h1>Livraison & Retours <br>Premium</h1>
+                <p style="font-size:18px; margin-bottom:40px;">Une expérience de service à la hauteur de nos créations
+                    artisanales.</p>
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <a href="shop.html" class="btn-luxe primary">RETOUR BOUTIQUE</a>
+                    <a href="https://wa.me/212670767903" class="btn-luxe outline">CONTACTER L'ATELIER</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container" style="text-align: center;">
+            <h2 style="font-family: var(--font-serif); font-size: 42px; margin-bottom: 20px;">Nos Services Premium</h2>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">Une expérience de livraison à la
+                hauteur de nos créations</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🚚</div>
+                <h3>Livraison Express</h3>
+                <p>24h à 48h au Maroc via nos partenaires premium. Livraison offerte dès 1000 MAD.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🏪</div>
+                <h3>Retrait en Boutique</h3>
+                <p>Disponible sous 4 heures à notre atelier prestigieux de l'Avenue Mohamed V à Rabat.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3>Livraison Internationale</h3>
+                <p>3 à 7 jours ouvrés partout dans le monde via DHL Express avec suivi en temps réel.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔄</div>
+                <h3>Retours Simplifiés</h3>
+                <p>14 jours pour échanger ou retourner. Retouches gratuites illimitées sur le sur-mesure.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section">
+        <div class="container" style="text-align: center;">
+            <h2 style="font-family: var(--font-serif); font-size: 42px; margin-bottom: 20px;">Votre Commande, Étape par
+                Étape</h2>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">Un processus transparent pour une
+                tranquillité d'esprit totale</p>
+        </div>
+
+        <div class="timeline-wrapper">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-number">1</span>
+                    <h3>Confirmation de Commande</h3>
+                    <p>Recevez instantanément un email de confirmation avec tous les détails de votre commande et le
+                        récapitulatif de votre achat.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-number">2</span>
+                    <h3>Préparation Artisanale</h3>
+                    <p>Nos maîtres tailleurs préparent votre commande avec le plus grand soin. Chaque pièce est
+                        inspectée minutieusement.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-number">3</span>
+                    <h3>Expédition Sécurisée</h3>
+                    <p>Votre commande est emballée dans un packaging luxueux et expédiée avec un numéro de suivi que
+                        vous recevez par SMS et email.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-number">4</span>
+                    <h3>Réception & Service Après-Vente</h3>
+                    <p>Réception à votre domicile ou en boutique. Notre service client reste disponible pour tout besoin
+                        de retouche ou question.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Original Policy Content - Enhanced -->
+    <main class="policy-content">
+        <div class="policy-section">
+            <h2>Modes de Livraison</h2>
+            <ul>
+                <li><strong>Livraison Express (Maroc) :</strong> 24h à 48h ouvrées via nos partenaires logistiques
+                    premium. Offert pour toute commande supérieure à 1000 MAD.</li>
+                <li><strong>Retrait en Boutique :</strong> Disponible sous 4 heures à notre atelier de Rabat (Avenue
+                    Mohamed V).</li>
+                <li><strong>Livraison Internationale :</strong> 3 à 7 jours ouvrés via DHL Express. Tarifs calculés au
+                    checkout.</li>
+            </ul>
+        </div>
+
+        <div class="policy-section" id="returns">
+            <h2>Échanges & Retours</h2>
+            <p>Vous disposez de 14 jours après réception de votre commande pour demander un échange ou un remboursement.
+            </p>
+            <ul>
+                <li>Les articles doivent être dans leur état d'origine, non portés et avec leurs étiquettes.</li>
+                <li><strong>Sur Mesure :</strong> Les pièces créées sur mesure ne sont pas remboursables mais
+                    bénéficient de retouches gratuites illimitées pendant 6 mois.</li>
+            </ul>
+        </div>
+    </main>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Besoin d'aide ?</h2>
+        <p>Notre service client est à votre disposition du lundi au samedi, de 9h à 19h.</p>
+        <a href="https://wa.me/212670767903" class="btn-luxe primary"
+            style="display:inline-block; text-decoration:none;">Contacter via WhatsApp</a>
+    </section>
+
+    <footer
+        style="padding:100px 0 40px; background:var(--bg-main); border-top:1px solid var(--border); margin-top:100px;">
+        <div class="container">
+            <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:50px; margin-bottom:80px;">
+                <div style="text-align:left;">
+                    <h3 class="brand-name" style="margin-bottom:20px;">ANNAKHIL</h3>
+                    <p style="font-size:13px; color:var(--text-muted);">Maison de haute couture marocaine depuis 1990.
+                        L'excellence au service de l'homme élégant.</p>
+                </div>
+                <div style="text-align:left;">
+                    <h4 style="font-size:14px; margin-bottom:20px; text-transform:uppercase; letter-spacing:0.1em;">
+                        Boutique</h4>
+                    <ul style="list-style:none; font-size:13px; padding-left:0;">
+                        <li style="margin-bottom:10px;"><a href="shop.html?category=Costumes"
+                                class="nav-link">Costumes</a></li>
+                        <li style="margin-bottom:10px;"><a href="shop.html?category=Vestes" class="nav-link">Vestes</a>
+                        </li>
+                        <li style="margin-bottom:10px;"><a href="shop.html?category=Accessoires"
+                                class="nav-link">Accessoires</a></li>
+                    </ul>
+                </div>
+                <div style="text-align:left;">
+                    <h4 style="font-size:14px; margin-bottom:20px; text-transform:uppercase; letter-spacing:0.1em;">Aide
+                    </h4>
+                    <ul style="list-style:none; font-size:13px; padding-left:0;">
+                        <li style="margin-bottom:10px;"><a href="about.html" class="nav-link">À Propos</a></li>
+                        <li style="margin-bottom:10px;"><a href="delivery.html" class="nav-link">Livraison</a></li>
+                        <li style="margin-bottom:10px;"><a href="privacy-policy.html"
+                                class="nav-link">Confidentialité</a>
+                        </li>
+                        <li style="margin-bottom:10px;"><a href="index.html#contact" class="nav-link">Contact</a></li>
+                    </ul>
+                </div>
+                <div style="text-align:left;">
+                    <h4 style="font-size:14px; margin-bottom:20px; text-transform:uppercase; letter-spacing:0.1em;">
+                        Newsletter</h4>
+                    <div style="display:flex; border-bottom:1px solid var(--text-main); padding-bottom:10px;">
+                        <input type="email" placeholder="Votre email"
+                            style="background:transparent; border:none; outline:none; flex:1; font-size:12px;">
+                        <button style="background:transparent; border:none; cursor:pointer;">&rarr;</button>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:40px; font-size:12px; color:var(--text-muted);">
+                <p>&copy; 2025 Tailleur Annakhil Luxury. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/ecommerce.js"></script>
+</body>
+
+</html>

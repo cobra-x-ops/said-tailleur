@@ -1,0 +1,826 @@
+/* 
+   Tailleur Annakhil - Unified Luxury Stylesheet
+   Version: 3.0 (Clean & Responsive)
+*/
+
+:root {
+    /* Colors - Pure Luxury Palette (No Violet) */
+    --gold: #c5a059;
+    /* Deep Gold */
+    --gold-rgb: 197, 160, 89;
+    --gold-light: #e0c389;
+    /* Champagne Gold */
+    --gold-dim: #9e8045;
+    /* Bronzed Gold */
+    --bg-dark: #0a0a0a;
+    /* Deep Charcoal Black */
+    --bg-darker: #050505;
+    /* Obsidian Black */
+    --surface: #141414;
+    /* Rich Graphite */
+    --text-main: #f0f0f0;
+    /* Soft Pearl White */
+    --text-main-rgb: 240, 240, 240;
+    --text-muted: #888888;
+    /* Steel Grey */
+
+    /* Typography */
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --fw-light: 300;
+    --fw-reg: 400;
+    --fw-bold: 600;
+
+    /* Spacing */
+    --container-width: 1400px;
+    --gutter: clamp(1.5rem, 5vw, 4rem);
+
+    /* Animation */
+    --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+    --transition-slow: 0.8s var(--ease-out-expo);
+    --transition-fast: 0.4s var(--ease-out-expo);
+}
+
+/* Light Mode Theme Overrides */
+[data-theme="light"] {
+    --bg-dark: #fcfcfc;
+    /* Very light grey for main backgrounds */
+    --bg-darker: #f2f2f2;
+    /* Slightly darker for depth */
+    --surface: #ffffff;
+    /* Pure white for cards */
+    --text-main: #1a1a1a;
+    /* Near black for readability */
+    --text-main-rgb: 26, 26, 26;
+    --text-muted: #666666;
+    /* Grey for secondary text */
+    --gold: #b08d4b;
+    /* Darker gold for better contrast on white */
+    --gold-rgb: 176, 141, 75;
+}
+
+/* =========================================
+   BASE & RESET
+   ========================================= */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    /* Remove mobile violet/blue highlight */
+}
+
+::selection {
+    background: var(--gold);
+    color: #000;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    background-color: var(--bg-dark);
+    overflow-x: hidden;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.7;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    cursor: none;
+    /* Custom cursor */
+}
+
+/* Custom Cursor handling for mobile */
+@media (max-width: 900px) {
+
+    body,
+    * {
+        cursor: auto !important;
+    }
+
+    .cursor-dot,
+    .cursor-circle {
+        display: none !important;
+    }
+}
+
+/* Noise Texture Overlay */
+.noise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Custom Cursor */
+.cursor-dot,
+.cursor-circle {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 10000;
+    pointer-events: none;
+    opacity: 0;
+    /* Hidden until first move to prevent jumping */
+    transition: opacity 0.3s ease, width 0.3s var(--ease-out-expo), height 0.3s var(--ease-out-expo), background-color 0.3s;
+}
+
+.cursor-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--gold);
+}
+
+.cursor-circle {
+    width: 40px;
+    height: 40px;
+    border: 1.5px solid var(--gold);
+    background-color: rgba(197, 160, 89, 0.05);
+    /* Very subtle gold tint */
+}
+
+body.hovering .cursor-circle {
+    width: 65px;
+    height: 65px;
+    background-color: rgba(197, 160, 89, 0.15);
+    border-color: #fff;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--font-heading);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+h1 {
+    font-size: clamp(3rem, 10vw, 6rem);
+}
+
+h2 {
+    font-size: clamp(2rem, 6vw, 4rem);
+}
+
+h3 {
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+}
+
+.subtitle {
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: block;
+}
+
+/* =========================================
+   COMPONENTS
+   ========================================= */
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+}
+
+section {
+    padding: clamp(4rem, 10vw, 8rem) 0;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2rem 2.8rem;
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: var(--transition-fast);
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.btn-primary {
+    background: var(--gold);
+    color: #000;
+}
+
+.btn-primary:hover {
+    background: transparent;
+    color: var(--gold);
+    border-color: var(--gold);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-main);
+    border-color: rgba(var(--text-main-rgb), 0.2);
+}
+
+.btn-secondary:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(var(--gold-rgb), 0.05);
+    /* I'll add --gold-rgb later or use hardcoded if simple */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color var(--transition-fast);
+}
+
+a:visited {
+    color: inherit;
+    /* Prevent default browser violet/purple for visited links */
+}
+
+a:focus {
+    outline: none;
+    color: var(--gold-light);
+}
+
+/* Scrollbar styling for a clean look (no default blue/violet) */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-darker);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gold-dim);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gold);
+}
+
+/* All photos branding: 16px border-radius top-only then requested premium rounded later */
+/* I will use 16px all around as requested for "modern and premium" in turn 404 */
+img {
+    border-radius: 16px;
+}
+
+/* =========================================
+   HEADER & NAV
+   ========================================= */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 2rem 0;
+    transition: padding 0.4s ease, background 0.4s ease;
+}
+
+header.scrolled {
+    padding: 1rem 0;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="light"] header.scrolled {
+    background: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+}
+
+.brand-logo {
+    height: 32px;
+    width: auto;
+    border-radius: 0;
+    /* Keep logo original */
+}
+
+.brand-name {
+    font-family: var(--font-heading);
+    color: var(--gold);
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size: 1.2rem;
+    color: var(--gold);
+    /* Ensure it always uses the theme's gold */
+}
+
+.nav-links {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+}
+
+.nav-item {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    text-decoration: none;
+}
+
+.nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0%;
+    height: 1px;
+    background: var(--gold);
+    transition: width 0.3s ease;
+}
+
+.nav-item:hover::after {
+    width: 100%;
+}
+
+.theme-btn {
+    background: none;
+    border: 1px solid var(--text-muted);
+    color: var(--text-main);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+[data-theme="light"] .theme-btn {
+    border-color: #000;
+    color: #000;
+}
+
+.theme-btn .icon-sun {
+    display: none;
+}
+
+[data-theme="light"] .theme-btn .icon-sun {
+    display: block;
+}
+
+[data-theme="light"] .theme-btn .icon-moon {
+    display: none;
+}
+
+/* =========================================
+   HERO (PERFECTED)
+   ========================================= */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../product info/hero background.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    transition: background 0.4s ease;
+}
+
+[data-theme="light"] .hero {
+    background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('../product info/hero background.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.hero-content {
+    max-width: 1000px;
+    padding: 0 2rem;
+}
+
+.hero-title-main {
+    display: block;
+    font-size: clamp(3.5rem, 12vw, 8rem);
+    color: var(--text-main);
+    -webkit-text-stroke: 1px rgba(var(--text-main-rgb), 0.1);
+}
+
+.hero-title-sub {
+    display: block;
+    font-size: clamp(1rem, 3vw, 1.8rem);
+    color: var(--gold);
+    letter-spacing: 0.4em;
+    margin-top: -0.5rem;
+    margin-bottom: 2rem;
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 650px;
+    margin: 0 auto 3rem;
+}
+
+[data-theme="light"] .hero-title-main {
+    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.05);
+}
+
+.mobile-menu-toggle {
+    display: none;
+}
+
+/* Footer & Other */
+footer {
+    padding: 6rem 0 3rem;
+    background: var(--bg-darker);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+}
+
+.footer-content {
+    margin-bottom: 3rem;
+}
+
+.footer-logo {
+    font-size: 2rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+}
+
+.footer-text {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.copyright {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* =========================================
+   BOUTIQUE
+   ========================================= */
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.filter-btn {
+    background: none;
+    border: none;
+    font-family: var(--font-heading);
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    padding-bottom: 5px;
+    position: relative;
+}
+
+.filter-btn.active {
+    color: var(--gold);
+}
+
+.filter-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--gold);
+}
+
+.products-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 3rem;
+}
+
+.product-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    background: var(--surface);
+    transition: transform 0.6s var(--ease-out-expo);
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+}
+
+.img-container {
+    height: 480px;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 16px;
+}
+
+.img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+    border-radius: 16px;
+}
+
+.product-card:hover img {
+    transform: scale(1.08);
+}
+
+.card-info {
+    padding: 2.5rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+    color: #fff;
+    /* Keep text white on darkened overlay */
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+[data-theme="light"] .card-info {
+    background: linear-gradient(transparent, rgba(255, 255, 255, 0.95));
+    color: var(--text-main);
+}
+
+.product-card:hover .card-info {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.card-title {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-price {
+    color: var(--gold);
+    font-weight: 600;
+}
+
+/* =========================================
+   PORTFOLIO (AVANT/APRÈS)
+   ========================================= */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.gallery-item {
+    height: 550px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: filter 0.8s ease;
+}
+
+.gallery-item:hover img {
+    filter: grayscale(0%);
+}
+
+/* =========================================
+   ABOUT & CONTACT
+   ========================================= */
+.about-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 8vw, 6rem);
+    align-items: center;
+}
+
+.about-img img {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+}
+
+#contact .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}
+
+.map-container {
+    height: 450px;
+    border-radius: 16px;
+    overflow: hidden;
+    filter: invert(90%) grayscale(100%);
+}
+
+[data-theme="light"] .map-container {
+    filter: none;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+@media (max-width: 1024px) {
+    :root {
+        --gutter: 2rem;
+    }
+
+    .nav-links {
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 900px) {
+
+    /* Mobile Menu Burger */
+    .mobile-menu-toggle {
+        display: flex !important;
+        flex-direction: column;
+        gap: 6px;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    .mobile-menu-toggle span {
+        width: 30px;
+        height: 2px;
+        background: var(--text-main);
+        transition: 0.3s;
+    }
+
+    /* Hamburger to X */
+    .mobile-menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 6px);
+    }
+
+    .mobile-menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .mobile-menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100vh;
+        background: var(--bg-dark);
+        flex-direction: column;
+        justify-content: center;
+        transition: 0.5s var(--ease-out-expo);
+        z-index: 999;
+    }
+
+    .nav-links.active {
+        right: 0;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .gallery-grid,
+    .about-section,
+    #contact .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-img {
+        order: -1;
+    }
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 3.2rem;
+    }
+
+    h2 {
+        font-size: 2.2rem;
+    }
+
+    /* Slightly smaller for mobile titles */
+    .hero-title-main {
+        font-size: 4rem;
+    }
+
+    .hero-title-sub {
+        letter-spacing: 0.2em;
+        font-size: 1.2rem;
+    }
+
+    .products-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .img-container {
+        height: 400px;
+    }
+
+    .gallery-item {
+        height: 400px;
+    }
+}
+
+/* Preloader */
+#preloader {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.8s ease;
+}
+
+#preloader.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.preload-logo img {
+    width: 120px;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.5;
+        transform: scale(0.95);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+[data-theme="light"] #preloader {
+    background: #fff;
+}
+
+/* Contact Form Classes */
+.input-field {
+    width: 100%;
+    padding: 1rem;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+[data-theme="light"] .input-field {
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #000;
+}
+
+.input-field:focus {
+    border-color: var(--gold);
+    outline: none;
+}

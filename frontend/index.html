@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tailleur Annakhil | Haute Couture & Luxe</title>
+    <link rel="icon" href="logo_annakhil.png" type="image/png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/luxe-theme.css">
+    <link rel="stylesheet" href="css/responsive-devices.css">
+    <link rel="stylesheet" href="css/hero-perfect.css">
+    <link rel="stylesheet" href="css/contact-responsive.css">
+    <link rel="stylesheet" href="css/3d-luxury.css">
+
+    <style>
+        /* Logo hover effect */
+        .brand-logo-wrapper:hover {
+            opacity: 0.8;
+        }
+
+        .brand-logo-wrapper:hover img {
+            transform: rotate(5deg) scale(1.1);
+        }
+
+        .luxe-header.scrolled .brand-logo-wrapper img {
+            filter: brightness(0) invert(0);
+        }
+
+        [data-theme="dark"] .luxe-header.scrolled .brand-logo-wrapper img {
+            filter: brightness(0) invert(1);
+        }
+
+        /* Specific page adjustments */
+        #shop-preview {
+            padding: 100px 0;
+            background: var(--bg-main);
+        }
+
+        .grid-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 60px;
+        }
+
+        .grid-products {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        @media (max-width: 1100px) {
+            .grid-products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .grid-products {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        @media (max-width: 900px) {
+            .experience-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        .atelier-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        @media (max-width: 900px) {
+            .atelier-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Premium Navigation -->
+    <header class="luxe-header">
+        <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
+            <a href="index.html" class="brand-logo-wrapper"
+                style="display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--text-main); transition:all 0.3s ease;">
+                <img src="logo_annakhil.png" alt="Annakhil Logo"
+                    style="width:35px; height:35px; object-fit:contain; filter:brightness(0) invert(1); transition:transform 0.3s ease;">
+                <span class="brand-name" style="font-size:24px;">ANNAKHIL</span>
+            </a>
+
+            <nav class="nav-links">
+                <a href="shop.html" class="nav-link">Boutique</a>
+                <a href="about.html" class="nav-link">À Propos</a>
+                <a href="index.html#atelier" class="nav-link">Atelier</a>
+                <a href="index.html#sur-mesure" class="nav-link">Sur Mesure</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+            </nav>
+
+            <div class="header-actions" style="display:flex; gap:25px; align-items:center;">
+                <!-- Hamburger Menu (Mobile Only) -->
+                <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Menu" style="display:none;">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <a href="dashboard.html" class="nav-link" style="font-size:18px;" title="Compte">👤</a>
+                <a href="#" class="nav-link" style="font-size:18px; position:relative;" title="Panier" data-cart-toggle>
+                    🛒 <span class="cart-count"
+                        style="position:absolute; top:-8px; right:-10px; background:var(--gold); color:white; font-size:10px; padding:2px 6px; border-radius:10px;">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section with Background Video Placeholder -->
+    <section class="premium-hero hero perspective-container">
+        <div class="hero-overlay-luxe"></div>
+
+        <!-- Parallax: Subtle Background movement (optional, keeping minimal for now to avoid gaps) -->
+        <div class="hero-layer" data-speed="0.01"
+            style="position:absolute; width:100%; height:100%; top:0; left:0; pointer-events:none;"></div>
+
+        <!-- Parallax: Main Content -->
+        <div class="container hero-layer" data-speed="0.03"
+            style="position:relative; z-index:10; pointer-events: auto;">
+            <div data-reveal style="max-width:800px;">
+                <span class="float-animation"
+                    style="text-transform:uppercase; letter-spacing:0.3em; font-size:11px; margin-bottom:25px; display:block; color:var(--gold);">
+                    Maison Fondée en 1990
+                </span>
+                <h1 style="line-height:1.2; margin-bottom:20px;">L'Art de l'Élégance <br>Sur-Mesure</h1>
+                <p class="float-delayed"
+                    style="font-size:18px; margin-bottom:45px; max-width:550px; line-height:1.6; color:rgba(255,255,255,0.9);">
+                    L'excellence de la haute couture masculine. <br>Une fusion subtile entre tradition marocaine et
+                    coupe contemporaine.
+                </p>
+                <div style="display:flex; gap:20px; flex-wrap:wrap;">
+                    <a href="shop.html" class="btn-luxe primary">voir boutique 💡🏬</a>
+                    <a href="#atelier" class="btn-luxe outline">L'Esprit Atelier</a>
+                </div>
+            </div>
+
+            <!-- TRUST BAR (Mobile & Desktop) -->
+            <div class="hero-trust-bar"
+                style="margin-top: 80px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(255,255,255,0.1); padding-top:20px;">
+                <div style="display:flex; gap:30px; opacity:0.8;">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <span style="color:var(--gold); font-size:16px;">✦</span>
+                        <span style="font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:white;">Sur
+                            Mesure</span>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:10px;" class="mobile-hide-trust">
+                        <span style="color:var(--gold); font-size:16px;">✦</span>
+                        <span
+                            style="font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:white;">Tissus
+                            Italiens</span>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <span style="color:var(--gold); font-size:16px;">✦</span>
+                        <span
+                            style="font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:white;">Artisanat
+                            1990</span>
+                    </div>
+                </div>
+
+                <!-- SCROLL INDICATOR -->
+                <div class="scroll-indicator" style="animation: bounce 2s infinite;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)"
+                        stroke-width="1">
+                        <rect x="5" y="2" width="14" height="20" rx="7"></rect>
+                        <line x1="12" y1="6" x2="12" y2="10"></line>
+                    </svg>
+                </div>
+            </div>
+
+            <style>
+                @keyframes bounce {
+
+                    0%,
+                    20%,
+                    50%,
+                    80%,
+                    100% {
+                        transform: translateY(0);
+                    }
+
+                    40% {
+                        transform: translateY(-5px);
+                    }
+
+                    60% {
+                        transform: translateY(-3px);
+                    }
+                }
+
+                @media(max-width: 600px) {
+                    .mobile-hide-trust {
+                        display: none !important;
+                    }
+
+                    .hero-trust-bar {
+                        margin-top: 60px;
+                    }
+                }
+            </style>
+        </div>
+    </section>
+
+    <!-- Collections Section -->
+    <section id="shop-preview">
+        <div class="container">
+            <div class="grid-header" data-reveal>
+                <div>
+                    <span class="subtitle"
+                        style="color:var(--gold); text-transform:uppercase; letter-spacing:0.2em; font-size:12px;">Selection
+                        Exclusive</span>
+                    <h2 style="font-size:42px; margin-top:10px;">Les Indispensables</h2>
+                </div>
+                <a href="shop.html" class="nav-link">Voir tout le catalogue &rarr;</a>
+            </div>
+
+            <div class="grid-products" id="featured-products">
+                <!-- Data will be loaded via JS from MongoDB -->
+                <div style="text-align:center; padding:50px; grid-column:1/-1; opacity:0.5;">Chargement des produits de
+                    luxe...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Atelier Section -->
+    <section id="atelier" style="padding:120px 0; background:var(--bg-main);">
+        <div class="container">
+            <div class="atelier-grid">
+                <div data-reveal style="position:relative;">
+                    <div style="aspect-ratio:4/5; overflow:hidden; border-radius:4px;">
+                        <img src="product info/logo_annakhil.png" alt="Notre Atelier"
+                            style="width:100%; height:100%; object-fit:contain; opacity:1; mix-blend-mode: screen;">
+                    </div>
+                </div>
+                <div data-reveal>
+                    <div data-reveal>
+                        <span
+                            style="color:var(--gold); text-transform:uppercase; letter-spacing:0.2em; font-size:11px; display:block; margin-bottom:20px;">Savoir-Faire
+                            & Excellence</span>
+                        <h2 style="font-size:38px; margin-bottom:30px; letter-spacing:-0.5px;">L'Atelier Annakhil</h2>
+
+                        <p style="color:var(--text-muted); font-size:16px; line-height:1.8; margin-bottom:25px;">
+                            Notre atelier perpétue l'art du tailleur depuis plus de trois décennies. Chaque création est
+                            une pièce unique, façonnée à la main pour épouser parfaitement votre silhouette et votre
+                            style.
+                        </p>
+
+                        <ul
+                            style="list-style:none; padding:0; margin-bottom:35px; color:var(--text-main); font-size:15px; line-height:1.8;">
+                            <li style="margin-bottom:10px; display:flex; align-items:center; gap:10px;">
+                                <span style="color:var(--gold);">✦</span> Sélection rigoureuse de tissus nobles
+                            </li>
+                            <li style="margin-bottom:10px; display:flex; align-items:center; gap:10px;">
+                                <span style="color:var(--gold);">✦</span> Plus de 60 heures de travail manuel
+                            </li>
+                            <li style="margin-bottom:10px; display:flex; align-items:center; gap:10px;">
+                                <span style="color:var(--gold);">✦</span> Finitions artisanales d'exception
+                            </li>
+                        </ul>
+
+                        <div
+                            style="display:flex; gap:50px; margin-bottom:40px; border-left:1px solid var(--gold); padding-left:25px;">
+                            <div>
+                                <span
+                                    style="font-size:32px; font-family:var(--font-serif); color:var(--gold); display:block;">1990</span>
+                                <span
+                                    style="font-size:10px; text-transform:uppercase; letter-spacing:0.2em; color:var(--text-muted);">Fondation</span>
+                            </div>
+                            <div>
+                                <span
+                                    style="font-size:32px; font-family:var(--font-serif); color:var(--gold); display:block;">5k+</span>
+                                <span
+                                    style="font-size:10px; text-transform:uppercase; letter-spacing:0.2em; color:var(--text-muted);">Clients
+                                    Privés</span>
+                            </div>
+                        </div>
+                        <a href="#contact" class="btn-luxe primary">Prendre Rendez-vous</a>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Parallax Experience Section -->
+    <section id="sur-mesure"
+        style="padding:150px 0; background:var(--bg-secondary); color:var(--text-main); overflow:hidden;">
+        <div class="container experience-grid">
+            <div data-reveal>
+                <span
+                    style="color:var(--gold); text-transform:uppercase; letter-spacing:0.2em; font-size:11px; margin-bottom:15px; display:block;">Service
+                    Exclusif</span>
+                <h2 style="font-size:48px; margin-bottom:30px; letter-spacing:-1px;">Une Seconde Peau</h2>
+                <p style="opacity:0.8; font-size:18px; line-height:1.6; margin-bottom:40px; font-weight:300;">
+                    Chaque point, chaque coupe est exécuté avec une précision millimétrique. <br>L'expérience du
+                    sur-mesure Annakhil est un voyage personnel vers l'élégance absolue.
+                </p>
+                <a href="#contact" class="btn-luxe primary" style="background:var(--gold); border:none;">Réserver une
+                    Consultation</a>
+            </div>
+            <div data-reveal style="position:relative;">
+                <!-- Luxury Image Placeholder -->
+                <div
+                    style="aspect-ratio:4/5; background:#111; overflow:hidden; border-radius:12px; border:1px solid var(--gold); box-shadow: 0 20px 40px rgba(0,0,0,0.4);">
+                    <img src="images/fitting.png" alt="Essayage Sur Mesure"
+                        style="width:100%; height:100%; object-fit:cover; opacity:0.9; transition: transform 0.5s ease;"
+                        onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" style="padding:100px 0; background:var(--bg-secondary);" data-reveal>
+        <div class="container">
+            <div class="contact-grid">
+                <div>
+                    <h2 style="font-size:42px; margin-bottom:25px; letter-spacing:-0.5px;">Consultation Privée</h2>
+                    <p style="color:var(--text-muted); margin-bottom:45px; line-height:1.7; font-size:16px;">
+                        Pour toute commande sur-mesure ou simple renseignement, nous vous invitons à nous contacter ou à
+                        visiter notre atelier à Temara.
+                    </p>
+
+                    <div style="margin-bottom:35px; border-left:2px solid var(--gold); padding-left:20px;">
+                        <h4
+                            style="font-size:11px; text-transform:uppercase; letter-spacing:0.2em; margin-bottom:8px; color:var(--gold);">
+                            Rendez-vous</h4>
+                        <p style="font-size:18px; letter-spacing:0.5px;">+212 670 767 903</p>
+                    </div>
+
+                    <div style="margin-bottom:35px; border-left:2px solid var(--gold); padding-left:20px;">
+                        <h4
+                            style="font-size:11px; text-transform:uppercase; letter-spacing:0.2em; margin-bottom:8px; color:var(--gold);">
+                            Adresse</h4>
+                        <p style="font-size:16px; line-height:1.5;">Bd Sahl Rhon / Oulad Lmtaa / Temara</p>
+                    </div>
+                </div>
+
+                <div
+                    style="background:var(--bg-main); padding:50px; border:1px solid var(--border); box-shadow: 0 30px 60px rgba(0,0,0,0.1);">
+                    <form id="contact-form">
+                        <div style="margin-bottom:25px;">
+                            <label
+                                style="display:block; font-size:10px; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:12px; color:var(--text-muted);">Votre
+                                Nom</label>
+                            <input type="text" id="name" required
+                                style="width:100%; padding:15px; background:var(--bg-secondary); border:1px solid var(--border); color:var(--text-main); font-family:inherit; outline:none; transition:0.3s;">
+                        </div>
+                        <div style="margin-bottom:25px;">
+                            <label
+                                style="display:block; font-size:10px; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:12px; color:var(--text-muted);">Email</label>
+                            <input type="email" id="email" required
+                                style="width:100%; padding:15px; background:var(--bg-secondary); border:1px solid var(--border); color:var(--text-main); font-family:inherit; outline:none; transition:0.3s;">
+                        </div>
+                        <div style="margin-bottom:30px;">
+                            <label
+                                style="display:block; font-size:10px; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:12px; color:var(--text-muted);">Votre
+                                Projet</label>
+                            <textarea id="message" required rows="4"
+                                style="width:100%; padding:15px; background:var(--bg-secondary); border:1px solid var(--border); color:var(--text-main); font-family:inherit; outline:none; transition:0.3s; resize:vertical;"></textarea>
+                        </div>
+                        <button type="submit" class="btn-luxe primary" style="width:100%;">Demander un Rappel</button>
+                        <div id="form-status"
+                            style="margin-top:20px; font-size:13px; display:none; padding:15px; text-align:center;">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust & Security -->
+    <footer style="padding:100px 0 40px; background:var(--bg-main); border-top:1px solid var(--border);">
+        <div class="container">
+            <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:50px; margin-bottom:80px;">
+                <div>
+                    <h3 class="brand-name" style="margin-bottom:20px;">ANNAKHIL</h3>
+                    <p style="font-size:13px; color:var(--text-muted); line-height:1.6;">Haute Couture Masculine
+                        Marocaine.<br>L'excellence du sur-mesure depuis 1990.</p>
+                </div>
+                <div>
+                    <h4 style="font-size:14px; margin-bottom:20px; text-transform:uppercase; letter-spacing:0.1em;">
+                        Boutique</h4>
+                    <ul style="list-style:none; font-size:13px;">
+                        <li style="margin-bottom:10px;"><a href="shop.html?category=Costumes"
+                                class="nav-link">Costumes</a>
+                        </li>
+                        <li style="margin-bottom:10px;"><a href="shop.html?category=Vestes" class="nav-link">Vestes</a>
+                        </li>
+                        <li style="margin-bottom:10px;"><a href="shop.html?category=Accessoires"
+                                class="nav-link">Accessoires</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="font-size:14px; margin-bottom:20px; text-transform:uppercase; letter-spacing:0.1em;">Aide
+                    </h4>
+                    <ul style="list-style:none; font-size:13px;">
+                        <li style="margin-bottom:10px;"><a href="about.html" class="nav-link">À Propos</a></li>
+                        <li style="margin-bottom:10px;"><a href="delivery.html" class="nav-link">Livraison</a></li>
+                        <li style="margin-bottom:10px;"><a href="privacy-policy.html"
+                                class="nav-link">Confidentialité</a>
+                        </li>
+                        <li style="margin-bottom:10px;"><a href="index.html#contact" class="nav-link">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4
+                        style="font-size:14px; margin-bottom:15px; text-transform:uppercase; letter-spacing:0.1em; color:var(--gold);">
+                        Le Cercle Privé
+                    </h4>
+                    <p style="font-size:11px; margin-bottom:20px; color:var(--text-muted); line-height:1.5;">
+                        Accédez à nos ventes privées et découvrez nos nouvelles créations en avant-première.
+                    </p>
+                    <form style="position:relative;">
+                        <input type="email" placeholder="Votre adresse email"
+                            style="width:100%; background:transparent; border:none; border-bottom:1px solid rgba(255,255,255,0.2); padding:10px 0; outline:none; font-size:13px; color:var(--text-main); transition:0.3s;"
+                            onfocus="this.style.borderColor='var(--gold)'"
+                            onblur="this.style.borderColor='rgba(255,255,255,0.2)'">
+                        <button type="submit"
+                            style="position:absolute; right:0; top:8px; background:transparent; border:none; color:var(--gold); cursor:pointer; font-size:18px; transition:0.3s;"
+                            onmouseover="this.style.transform='translateX(5px)'"
+                            onmouseout="this.style.transform='translateX(0)'">
+                            →
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div
+                style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:40px; font-size:12px; color:var(--text-muted);">
+                <p>&copy; 2025 Tailleur Annakhil Luxury. Tous droits réservés.</p>
+                <div style="display:flex; gap:20px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" height="15">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa"
+                        height="15">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard"
+                        height="15">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Drawer -->
+    <div class="cart-overlay"></div>
+    <div class="cart-drawer">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:40px;">
+            <h2 style="font-family:var(--font-serif); font-size:24px;">Votre Panier</h2>
+            <button type="button" class="close-cart-btn"
+                style="background:none; border:none; cursor:pointer; font-size:24px;">✕</button>
+        </div>
+        <div id="cart-items-list" style="flex:1; overflow-y:auto; margin-bottom:40px;">
+            <!-- Loaded via JS -->
+        </div>
+        <div style="border-top:1px solid var(--border); padding-top:20px;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:20px; font-weight:600;">
+                <span>Total</span>
+                <span id="cart-total-price">0 MAD</span>
+            </div>
+            <a href="checkout.html" class="btn-luxe primary" style="width:100%; text-decoration:none;">Commander</a>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/ecommerce.js?v=3.0"></script>
+    <script src="js/index-ui.js" defer></script>
+    <script src="js/3d-effects.js"></script>
+    <script src="js/magnetic-buttons.js"></script>
+</body>
+
+</html>

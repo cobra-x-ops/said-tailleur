@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boutique | Tailleur Annakhil Luxury</title>
+    <link rel="icon" href="logo_annakhil.png" type="image/png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/luxe-theme.css">
+    <link rel="stylesheet" href="css/responsive-devices.css">
+    <link rel="stylesheet" href="css/sort-dropdown.css">
+    <link rel="stylesheet" href="css/hero-perfect.css">
+    <link rel="stylesheet" href="css/3d-luxury.css">
+
+    <style>
+        .shop-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 60px;
+            padding: 160px 0 100px;
+        }
+
+        .filter-sidebar {
+            position: sticky;
+            top: 120px;
+        }
+
+        .filter-group {
+            margin-bottom: 40px;
+        }
+
+        .filter-title {
+            font-family: var(--font-sans);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 20px;
+            display: block;
+            font-weight: 700;
+        }
+
+        .filter-list {
+            list-style: none;
+        }
+
+        .filter-item {
+            margin-bottom: 12px;
+            font-size: 14px;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: 0.3s;
+        }
+
+        .filter-item:hover,
+        .filter-item.active {
+            color: var(--gold);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .shop-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+        }
+
+        @media (max-width: 900px) {
+            .shop-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-sidebar {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 300px;
+                height: 100vh;
+                background: var(--bg-secondary);
+                z-index: 2000;
+                padding: 40px;
+                overflow-y: auto;
+                box-shadow: 10px 0 50px rgba(0, 0, 0, 0.5);
+                animation: slideRight 0.3s ease;
+            }
+
+            .filter-sidebar.active {
+                display: block;
+            }
+
+            .filter-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.7);
+                z-index: 1999;
+                backdrop-filter: blur(2px);
+            }
+
+            .filter-overlay.active {
+                display: block;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            #mobile-filter-btn {
+                display: flex !important;
+            }
+        }
+
+        @keyframes slideRight {
+            from {
+                transform: translateX(-100%);
+            }
+
+            to {
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation (Same as index) -->
+    <header class="luxe-header scrolled">
+        <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
+            <a href="index.html" class="brand-name" style="text-decoration:none; font-size:24px;">ANNAKHIL</a>
+            <nav class="nav-links">
+                <a href="shop.html" class="nav-link">Boutique</a>
+                <a href="about.html" class="nav-link">À Propos</a>
+                <a href="index.html#atelier" class="nav-link">Atelier</a>
+                <a href="index.html#sur-mesure" class="nav-link">Sur Mesure</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+            </nav>
+            <div class="header-actions" style="display:flex; gap:25px; align-items:center;">
+                <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Menu" style="display:none;">
+                    <span></span><span></span><span></span>
+                </button>
+                <a href="dashboard.html" class="nav-link" style="font-size:18px;" title="Compte">👤</a>
+                <a href="#" class="nav-link" style="font-size:18px; position:relative;" title="Panier" data-cart-toggle>
+                    🛒 <span class="cart-count"
+                        style="position:absolute; top:-8px; right:-10px; background:var(--gold); color:white; font-size:10px; padding:2px 6px; border-radius:10px;">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Filter Overlay (outside grid to avoid layout issues) -->
+        <div class="filter-overlay" id="filter-overlay"></div>
+
+        <div class="shop-layout">
+            <!-- Filters -->
+            <aside class="filter-sidebar" id="filter-sidebar">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
+                    <span class="filter-title" style="margin:0; font-size:16px;">Filtres</span>
+                    <button id="close-filter"
+                        style="background:none; border:none; color:var(--text-main); font-size:24px; cursor:pointer; display:none;">&times;</button>
+                </div>
+
+                <div class="filter-group">
+                    <span class="filter-title">Catégories</span>
+                    <ul class="filter-list" id="cat-filters">
+                        <li class="filter-item active" data-cat="all">Tout</li>
+                        <li class="filter-item" data-cat="Costumes">Costumes</li>
+                        <li class="filter-item" data-cat="Vestes">Vestes</li>
+                        <li class="filter-item" data-cat="Chemises">Chemises</li>
+                        <li class="filter-item" data-cat="Pantalons">Pantalons</li>
+                        <li class="filter-item" data-cat="Chaussures">Chaussures</li>
+                        <li class="filter-item" data-cat="Accessoires">Accessoires</li>
+                    </ul>
+                </div>
+
+                <div class="filter-group">
+                    <span class="filter-title">Prix</span>
+                    <ul class="filter-list" id="price-filters">
+                        <li class="filter-item active" data-price="all">Tous les prix</li>
+                        <li class="filter-item" data-price="0-2000">0 - 2000 MAD</li>
+                        <li class="filter-item" data-price="2000-4000">2000 - 4000 MAD</li>
+                        <li class="filter-item" data-price="4000+">4000+ MAD</li>
+                    </ul>
+                </div>
+
+                <div
+                    style="background:var(--bg-secondary); padding:30px; color:var(--text-main); margin-top:60px; border:1px solid var(--border);">
+                    <h4 style="font-family:var(--font-serif); margin-bottom:15px;">Sur Mesure</h4>
+                    <p style="font-size:12px; opacity:0.7; margin-bottom:20px;">Vous ne trouvez pas votre taille ? Nous
+                        créons votre pièce unique en atelier.</p>
+                    <a href="https://wa.me/212670767903"
+                        style="color:var(--gold); font-size:12px; text-transform:uppercase; letter-spacing:0.1em; text-decoration:none;">Réserver
+                        &rarr;</a>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main>
+                <div class="shop-controls">
+                    <p style="font-size:13px; color:var(--text-muted);" id="product-count">Chargement...</p>
+                    <div style="display:flex; gap:20px;">
+                        <button id="mobile-filter-btn" class="btn-luxe outline"
+                            style="display:none; padding:10px 20px; font-size:11px;">
+                            FILTRER
+                        </button>
+                        <select id="sort-order" class="sort-select">
+                            <option value="-_id">Nouveautés</option>
+                            <option value="price">Prix croissant</option>
+                            <option value="-price">Prix décroissant</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="product-grid" id="shop-grid">
+                    <!-- Products dynamically loaded -->
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer
+        style="padding:100px 0 40px; background:var(--bg-main); border-top:1px solid var(--border); margin-top:100px;">
+        <div class="container">
+            <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:50px; margin-bottom:80px;">
+                <div>
+                    <h3 class="brand-name" style="margin-bottom:20px;">ANNAKHIL</h3>
+                    <p style="font-size:13px; color:var(--text-muted);">Maison de haute couture marocaine depuis 1990.
+                        L'excellence au service de l'homme élégant.</p>
+                </div>
+                <div>
+                    <h4 style="font-size:14px; margin-bottom:20px; text-transform:uppercase; letter-spacing:0.1em;">
+                        Boutique</h4>
+                    <ul style="list-style:none; font-size:13px;">
+                        <li style="margin-bottom:10px;"><a href="shop.html?category=Costumes"
+                                class="nav-link">Costumes</a></li>
+                        <li style="margin-bottom:10px;"><a href="shop.html?category=Vestes" class="nav-link">Vestes</a>
+                        </li>
+                        <li style="margin-bottom:10px;"><a href="shop.html?category=Accessoires"
+                                class="nav-link">Accessoires</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="font-size:14px; margin-bottom:20px; text-transform:uppercase; letter-spacing:0.1em;">Aide
+                    </h4>
+                    <ul style="list-style:none; font-size:13px;">
+                        <li style="margin-bottom:10px;"><a href="about.html" class="nav-link">À Propos</a></li>
+                        <li style="margin-bottom:10px;"><a href="delivery.html" class="nav-link">Livraison</a></li>
+                        <li style="margin-bottom:10px;"><a href="privacy-policy.html"
+                                class="nav-link">Confidentialité</a>
+                        </li>
+                        <li style="margin-bottom:10px;"><a href="index.html#contact" class="nav-link">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="font-size:14px; margin-bottom:20px; text-transform:uppercase; letter-spacing:0.1em;">
+                        Newsletter</h4>
+                    <div style="display:flex; border-bottom:1px solid var(--text-main); padding-bottom:10px;">
+                        <input type="email" placeholder="Votre email"
+                            style="background:transparent; border:none; outline:none; flex:1; font-size:12px;">
+                        <button style="background:transparent; border:none; cursor:pointer;">&rarr;</button>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:40px; font-size:12px; color:var(--text-muted);">
+                <p>&copy; 2025 Tailleur Annakhil Luxury. Tous droits réservés.</p>
+                <div style="display:flex; gap:20px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" height="15">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa"
+                        height="15">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard"
+                        height="15">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Drawer -->
+    <div class="cart-overlay"></div>
+    <div class="cart-drawer">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:40px;">
+            <h2 style="font-family:var(--font-serif); font-size:24px;">Votre Panier</h2>
+            <button type="button" class="close-cart-btn"
+                style="background:none; border:none; cursor:pointer; font-size:24px;">✕</button>
+        </div>
+        <div id="cart-items-list" style="flex:1; overflow-y:auto; margin-bottom:40px;">
+            <!-- Loaded via JS -->
+        </div>
+        <div style="border-top:1px solid var(--border); padding-top:20px;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:20px; font-weight:600;">
+                <span>Total</span>
+                <span id="cart-total-price">0 MAD</span>
+            </div>
+            <a href="checkout.html" class="btn-luxe primary" style="width:100%; text-decoration:none;">Commander</a>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/ecommerce.js?v=3.0"></script>
+    <script>
+        let currentFilters = {
+            category: 'all',
+            price: 'all',
+            sort: '-_id'  // Changed from -createdAt to -_id (works without createdAt field)
+        };
+
+        // Check URL Parameters for initial category
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('category')) {
+            currentFilters.category = urlParams.get('category');
+            // Update UI active state
+            document.querySelectorAll('.filter-item').forEach(item => {
+                if (item.dataset.cat === currentFilters.category) {
+                    item.parentElement.querySelectorAll('.filter-item').forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                }
+            });
+        }
+
+        async function loadProducts() {
+            const grid = document.getElementById('shop-grid');
+            const counter = document.getElementById('product-count');
+
+            // Build Query
+            let url = `http://localhost:3030/api/products?sort=${currentFilters.sort}&_t=${Date.now()}`;
+            if (currentFilters.category !== 'all') url += `&category=${currentFilters.category}`;
+
+            if (currentFilters.price !== 'all') {
+                if (currentFilters.price === '0-2000') url += '&price[lte]=2000';
+                if (currentFilters.price === '2000-4000') url += '&price[gte]=2000&price[lte]=4000';
+                if (currentFilters.price === '4000+') url += '&price[gte]=4000';
+            }
+
+            try {
+                console.log('[SHOP] Fetching products from:', url);
+                const res = await fetch(url, {
+                    method: 'GET',
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                console.log('[SHOP] Response status:', res.status);
+                console.log('[SHOP] Response ok:', res.ok);
+
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+
+                const data = await res.json();
+                console.log('[SHOP] API Response:', data);
+                console.log('[SHOP] Success:', data.success, 'Count:', data.count);
+                console.log('[SHOP] Data array:', data.data);
+
+                if (data.success) {
+                    counter.innerText = `${data.count} produits trouvés`;
+                    console.log('[SHOP] Rendering', data.count, 'products');
+
+                    if (!data.data || data.data.length === 0) {
+                        console.warn('[SHOP] No products in data.data array');
+                        console.warn('[SHOP] Full response:', JSON.stringify(data, null, 2));
+                        grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:50px;">Aucun produit disponible.</div>';
+                        return;
+                    }
+
+                    grid.innerHTML = data.data.map(p => {
+                        console.log('[SHOP] Rendering product:', p.title);
+                        return `
+                        <div class="product-card luxe-card-3d" data-reveal data-slug="${p.slug}">
+                            <div class="luxe-card-inner">
+                                <div class="luxe-card-shine"></div>
+                                <div class="product-card-image luxe-card-img">
+                                    <img src="${p.mainImage}" alt="${p.title}" loading="lazy">
+                                    ${p.stock < 3 ? '<span class="product-card-badge">Stock Limité</span>' : ''}
+                                </div>
+                                <div class="product-card-info luxe-card-content">
+                                    <h3>${p.title}</h3>
+                                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                                        <p class="product-card-price">${p.price} ${p.currency}</p>
+                                        <button class="btn-luxe-mini" 
+                                            type="button"
+                                            data-id="${p._id || p.id}"
+                                            data-title="${p.title}"
+                                            data-price="${p.price.toString().replace(/[^0-9.]/g, '')}"
+                                            data-image="${p.mainImage}"
+                                            data-currency="${p.currency}">
+                                            +
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `}).join('');
+
+                    console.log('[SHOP] Products rendered to grid');
+                    // Trigger reveal animations
+                    Ecommerce.init();
+                } else {
+                    console.error('[SHOP] API returned success:false', data);
+                    grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:50px; color:red;">Erreur de chargement des produits.</div>';
+                }
+            } catch (err) {
+                console.error('[SHOP] Error loading products:', err);
+                console.error('[SHOP] Error stack:', err.stack);
+                grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:50px; color:red;">Erreur: ' + err.message + '<br>Vérifiez la console pour plus de détails.</div>';
+            }
+        }
+
+        // Filter Logic
+        document.querySelectorAll('.filter-item').forEach(item => {
+            item.addEventListener('click', function () {
+                const parent = this.parentElement;
+                parent.querySelectorAll('.filter-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+
+                if (this.dataset.cat) currentFilters.category = this.dataset.cat;
+                if (this.dataset.price) currentFilters.price = this.dataset.price;
+
+                loadProducts();
+            });
+        });
+
+        document.getElementById('sort-order').addEventListener('change', (e) => {
+            currentFilters.sort = e.target.value;
+            loadProducts();
+        });
+
+        // Mobile Filter Logic
+        const filterBtn = document.getElementById('mobile-filter-btn');
+        const sidebar = document.getElementById('filter-sidebar');
+        const overlay = document.getElementById('filter-overlay');
+        const closeFilter = document.getElementById('close-filter');
+
+        function toggleFilter() {
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+            // Show/Hide close button based on state
+            closeFilter.style.display = sidebar.classList.contains('active') ? 'block' : 'none';
+        }
+
+        if (filterBtn) filterBtn.addEventListener('click', toggleFilter);
+        if (overlay) overlay.addEventListener('click', toggleFilter);
+        if (closeFilter) closeFilter.addEventListener('click', toggleFilter);
+
+        loadProducts();
+    </script>
+    <script src="js/3d-effects.js"></script>
+    <script src="js/magnetic-buttons.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+/* Contact Section Responsive Grid */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+/* Mobile Styling for Contact Form */
+@media (max-width: 768px) {
+    .contact-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 40px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Ensure form container doesn't overflow */
+    #contact .container {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        overflow-x: hidden !important;
+    }
+
+    /* Update form container box styling for mobile */
+    #contact form {
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    #contact input,
+    #contact textarea {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        max-width: 100% !important;
+    }
+
+    /* Ensure button is visible and centered */
+    #contact button[type="submit"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        display: block !important;
+        margin: 0 auto !important;
+    }
+}

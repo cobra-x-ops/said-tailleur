@@ -1,0 +1,66 @@
+/* Premium Rounded Corners for Product Images */
+
+/* Product Cards - All Corners Rounded */
+.product-card {
+    border-radius: 16px !important;
+    overflow: hidden;
+}
+
+.product-card .img-container {
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.product-card .img-container img {
+    border-radius: 16px;
+}
+
+/* Product Detail Page */
+.detail-img {
+    border-radius: 16px !important;
+}
+
+/* Card Info maintains sharp bottom for contrast */
+.card-info {
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
+
+/* Gallery & Portfolio Images - Full Rounded */
+.gallery-item {
+    border-radius: 16px !important;
+    overflow: hidden;
+}
+
+.gallery-item img {
+    border-radius: 16px !important;
+}
+
+/* About Section */
+.about-img img {
+    border-radius: 16px !important;
+}
+
+/* Instagram Feed */
+.insta-item {
+    border-radius: 12px !important;
+    overflow: hidden;
+}
+
+.insta-item img {
+    border-radius: 12px !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+
+    .product-card,
+    .product-card .img-container,
+    .product-card .img-container img,
+    .detail-img,
+    .gallery-item,
+    .gallery-item img,
+    .about-img img {
+        border-radius: 12px !important;
+    }
+}

@@ -1,0 +1,88 @@
+/* Logo with Background Image */
+.logo {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+    padding: 0.5rem 1rem;
+}
+
+/* Background Logo Image */
+.logo-bg {
+    position: absolute;
+    height: 70px;
+    width: auto;
+    opacity: 0.15;
+    /* Subtle background */
+    z-index: -1;
+    filter: brightness(1.2);
+    transition: all 0.3s ease;
+}
+
+header.scrolled .logo-bg {
+    height: 55px;
+    opacity: 0.1;
+}
+
+/* Logo Text */
+.logo-text {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.logo-text .accent {
+    color: var(--gold);
+}
+
+/* Hover Effect */
+.logo:hover .logo-bg {
+    opacity: 0.25;
+    transform: scale(1.1);
+}
+
+header.scrolled .logo-text {
+    font-size: 1.3rem;
+}
+
+/* Product page logo link */
+.logo a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Light mode adjustments */
+[data-theme="light"] .logo-bg {
+    opacity: 0.08;
+    filter: brightness(0.9);
+}
+
+[data-theme="light"] .logo:hover .logo-bg {
+    opacity: 0.15;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .logo-bg {
+        height: 60px;
+    }
+
+    .logo-text {
+        font-size: 1.2rem;
+    }
+
+    header.scrolled .logo-bg {
+        height: 50px;
+    }
+
+    header.scrolled .logo-text {
+        font-size: 1.1rem;
+    }
+}

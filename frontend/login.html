@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion | Tailleur Annakhil Luxury</title>
+    <link rel="icon" href="logo_annakhil.png" type="image/png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/luxe-theme.css">
+    <link rel="stylesheet" href="css/responsive-devices.css">
+    <link rel="stylesheet" href="css/auth-premium.css">
+</head>
+
+<body>
+
+    <!-- Simplified Header for Auth Page -->
+    <header class="luxe-header" style="background:transparent; border:none; padding-top:40px;">
+        <div class="container" style="display:flex; justify-content:center;">
+            <a href="index.html" class="brand-name"
+                style="text-decoration:none; font-size:28px; position:relative; z-index:10;">ANNAKHIL</a>
+        </div>
+    </header>
+
+    <div class="auth-page-wrapper">
+        <div class="auth-card">
+
+            <!-- LOGIN VIEW -->
+            <div id="login-view">
+                <div class="auth-header">
+                    <h1 class="auth-title">Espace Client</h1>
+                    <p class="auth-subtitle">Accédez à votre historique, suivez vos commandes et gérez vos essayages.
+                    </p>
+                </div>
+
+                <form id="login-form">
+                    <div class="auth-form-group">
+                        <input type="email" class="auth-input" id="login-email" placeholder="Adresse E-mail" required>
+                    </div>
+                    <div class="auth-form-group">
+                        <input type="password" class="auth-input" id="login-password" placeholder="Mot de passe"
+                            required>
+                    </div>
+                    <button type="submit" class="auth-btn" id="login-btn">
+                        <span>Se Connecter</span>
+                    </button>
+                </form>
+
+                <div class="auth-switch">
+                    Pas encore de compte ? <a href="#" id="link-to-register">Devenir Membre</a>
+                </div>
+            </div>
+
+            <!-- REGISTER VIEW -->
+            <div id="register-view" style="display:none;">
+                <div class="auth-header">
+                    <h1 class="auth-title">Bienvenue</h1>
+                    <p class="auth-subtitle">Rejoignez le cercle Annakhil pour une expérience sur-mesure exclusive.</p>
+                </div>
+
+                <form id="register-form">
+                    <div class="auth-form-group">
+                        <input type="text" class="auth-input" id="reg-name" placeholder="Nom Complet" required>
+                    </div>
+                    <div class="auth-form-group">
+                        <input type="email" class="auth-input" id="reg-email" placeholder="Adresse E-mail" required>
+                    </div>
+                    <div class="auth-form-group">
+                        <input type="password" class="auth-input" id="reg-password"
+                            placeholder="Mot de passe (Min. 6 caractères)" minlength="6" required>
+                    </div>
+                    <button type="submit" class="auth-btn" id="reg-btn">
+                        <span>Créer mon Compte</span>
+                    </button>
+                </form>
+
+                <div class="auth-switch">
+                    Déjà membre ? <a href="#" id="link-to-login">Se Connecter</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/ecommerce.js"></script>
+    <script src="js/auth-ui.js"></script>
+</body>
+
+</html>

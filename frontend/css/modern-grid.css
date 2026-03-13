@@ -1,0 +1,220 @@
+/* 
+   Advanced Grid & Visual Polish 
+   Focus: Consistency, Shadows, Hover, Premium Feel
+*/
+
+/* --- Enhanced Product Grid --- */
+.products-wrapper {
+    display: grid;
+    /* Use auto-fill with a slightly larger minimum for 'breathing room' */
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 4rem 3rem;
+    /* Larger vertical gap */
+    align-items: start;
+}
+
+/* --- Premium Product Card --- */
+.product-card {
+    background: var(--surface);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    /* Subtle border */
+    border-radius: 4px;
+    /* Slight rounding, not too much */
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    /* Deep shadow */
+    position: relative;
+    /* Ensure consistent height aspect ratio for cards if content varies */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Hover State: Lift & Glow */
+.product-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 20px 40px -10px rgba(197, 160, 89, 0.15);
+    /* Gold glow */
+    border-color: rgba(197, 160, 89, 0.3);
+}
+
+/* --- Image Container Consistency --- */
+.img-container {
+    width: 100%;
+    /* Fixed aspect ratio (e.g., 4:5 vertical portrait) is crucial for uniformity */
+    aspect-ratio: 4 / 5;
+    height: auto;
+    /* Let aspect-ratio dictate height */
+    overflow: hidden;
+    background-color: #1a1a1a;
+    /* Placeholder color while loading */
+    position: relative;
+}
+
+.img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Ensures filling without distortion */
+    object-position: center;
+    /* Focus on center */
+    transition: transform 0.8s ease;
+    will-change: transform;
+}
+
+/* Zoom effect on hover */
+.product-card:hover .img-container img {
+    transform: scale(1.15);
+}
+
+/* --- Highlight Key Images (First item special style option) --- */
+/* Example: Make the first child span 2 columns if on large screen (Masonry-lite feel) */
+@media (min-width: 1100px) {
+    .products-wrapper .product-card:first-child {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+
+    .products-wrapper .product-card:first-child .img-container {
+        aspect-ratio: 16/10;
+        /* Landscape for the featured item */
+    }
+}
+
+
+/* --- Card Overlay & Typography --- */
+.card-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* More breathable padding */
+    padding: 2.5rem 2rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 10%, rgba(0, 0, 0, 0.6) 50%, transparent 100%);
+    transform: translateY(10px);
+    opacity: 0;
+    transition: all 0.4s ease-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 50%;
+}
+
+/* Reveal interaction */
+.product-card:hover .card-info {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Typography Hierarchy */
+.card-title {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    transform: translateY(10px);
+    transition: transform 0.4s ease 0.1s;
+    /* Staggered */
+}
+
+.card-price {
+    font-family: var(--font-heading);
+    color: var(--gold);
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+    display: block;
+    transform: translateY(10px);
+    transition: transform 0.4s ease 0.2s;
+    /* Staggered */
+}
+
+.product-card:hover .card-title,
+.product-card:hover .card-price {
+    transform: translateY(0);
+}
+
+
+/* --- Button refinement inside card --- */
+.product-card .btn {
+    align-self: flex-start;
+    padding: 0.8rem 2rem;
+    font-size: 0.8rem;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #fff;
+    backdrop-filter: blur(4px);
+    transform: translateY(10px);
+    transition: all 0.3s ease 0.3s;
+}
+
+.product-card .btn:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #000;
+    box-shadow: 0 5px 15px rgba(197, 160, 89, 0.4);
+}
+
+.product-card:hover .btn {
+    transform: translateY(0);
+}
+
+
+/* --- Portfolio Grid Polish --- */
+.gallery-grid {
+    gap: 2rem;
+    /* Consistent breathing room */
+}
+
+.gallery-item {
+    border-radius: 4px;
+    /* Consistent rounding */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Overlay effect for portfolio */
+.gallery-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    transition: background 0.5s ease;
+}
+
+.gallery-item:hover::after {
+    background: rgba(0, 0, 0, 0);
+    /* Reveal brightness on hover */
+}
+
+/* --- Instagram Feed Polish --- */
+.insta-item {
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+
+.insta-item img {
+    transition: transform 0.5s ease;
+}
+
+.insta-item:hover img {
+    transform: scale(1.1);
+    opacity: 1 !important;
+}
+
+/* Light Mode adaptations for shadows */
+[data-theme="light"] .product-card {
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+    border-color: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .product-card:hover {
+    box-shadow: 0 20px 40px -10px rgba(197, 160, 89, 0.25);
+}

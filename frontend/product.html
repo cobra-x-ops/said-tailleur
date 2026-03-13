@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produit | Tailleur Annakhil Luxury</title>
+    <link rel="icon" href="logo_annakhil.png" type="image/png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/luxe-theme.css">
+    <link rel="stylesheet" href="css/responsive-devices.css">
+
+    <style>
+        .product-detail-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            padding: 160px 0 100px;
+        }
+
+        .product-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .main-image-container {
+            aspect-ratio: 4/5;
+            overflow: hidden;
+            background: var(--bg-secondary);
+            cursor: zoom-in;
+            position: relative;
+        }
+
+        .main-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .main-image-container:hover img {
+            transform: scale(1.1);
+        }
+
+        .thumb-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .thumb {
+            aspect-ratio: 1/1;
+            cursor: pointer;
+            border: 1px solid transparent;
+            overflow: hidden;
+        }
+
+        .thumb.active {
+            border-color: var(--gold);
+        }
+
+        .thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+            transition: 0.3s;
+        }
+
+        .thumb:hover img,
+        .thumb.active img {
+            opacity: 1;
+        }
+
+        .product-info {
+            position: sticky;
+            top: 120px;
+            height: fit-content;
+        }
+
+        .product-tag {
+            color: var(--gold);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            display: block;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .price-tag {
+            font-size: 28px;
+            font-weight: 600;
+            margin: 25px 0;
+            display: block;
+        }
+
+        .specs-list {
+            list-style: none;
+            margin: 40px 0;
+            border-top: 1px solid var(--border);
+            padding-top: 30px;
+        }
+
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 14px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+        }
+
+        .spec-label {
+            color: var(--text-muted);
+        }
+
+        .reco-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 900px) {
+            .product-detail-layout {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .reco-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="luxe-header scrolled">
+        <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
+            <a href="index.html" class="brand-name" style="text-decoration:none; font-size:24px;">ANNAKHIL</a>
+            <nav class="nav-links">
+                <a href="shop.html" class="nav-link">Boutique</a>
+                <a href="about.html" class="nav-link">À Propos</a>
+                <a href="index.html#atelier" class="nav-link">Atelier</a>
+                <a href="index.html#sur-mesure" class="nav-link">Sur Mesure</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+            </nav>
+            <div class="header-actions" style="display:flex; gap:25px; align-items:center;">
+                <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Menu" style="display:none;">
+                    <span></span><span></span><span></span>
+                </button>
+                <a href="dashboard.html" class="nav-link" style="font-size:18px;" title="Compte">👤</a>
+                <a href="#" class="nav-link" style="font-size:18px; position:relative;" title="Panier" data-cart-toggle>
+                    🛒 <span class="cart-count"
+                        style="position:absolute; top:-8px; right:-10px; background:var(--gold); color:white; font-size:10px; padding:2px 6px; border-radius:10px;">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="product-detail-layout">
+
+            <!-- Gallery -->
+            <div class="product-gallery" data-reveal>
+                <div class="main-image-container" id="main-view">
+                    <img id="primary-image" src="" alt="Produit">
+                </div>
+                <div class="thumb-grid" id="thumb-grid">
+                    <!-- Thumbs loaded via JS -->
+                </div>
+            </div>
+
+            <!-- Info -->
+            <div class="product-info" data-reveal>
+                <div id="product-content">
+                    <span class="product-tag" id="prod-category">Catégorie</span>
+                    <h1 id="prod-title" style="font-size:42px; margin-bottom:10px;">Chargement...</h1>
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <span id="prod-rating" style="color:var(--gold); font-size:14px;">★★★★★</span>
+                        <span id="prod-reviews" style="font-size:12px; color:var(--text-muted);">(0 avis)</span>
+                    </div>
+
+                    <span class="price-tag" id="prod-price">... MAD</span>
+
+                    <p id="prod-desc" style="color:var(--text-muted); margin-bottom:40px;">...</p>
+
+                    <div style="display:flex; gap:20px; align-items:center; margin-bottom:50px;">
+                        <button class="btn-luxe primary" style="flex:1;" id="add-to-cart-btn">Ajouter au Panier</button>
+                        <button class="btn-luxe outline" style="padding:18px 25px;">♡</button>
+                    </div>
+
+                    <div class="specs-list">
+                        <div class="spec-item">
+                            <span class="spec-label">Disponibilité</span>
+                            <span id="prod-stock">En stock</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Livraison</span>
+                            <span>2-4 jours ouvrés</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Artisanat</span>
+                            <span>Fait Main au Maroc</span>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:40px; display:flex; gap:15px;">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" height="20"
+                            style="opacity:0.5">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" height="20"
+                            style="opacity:0.5">
+                        <span style="font-size:11px; color:var(--text-muted); align-self:center;">Paiement 100% sécurisé
+                            SSL</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- AI Recommendations -->
+        <section style="margin: 100px 0;">
+            <div style="border-top: 1px solid var(--border); padding-top:60px;">
+                <h2 style="font-size:32px; margin-bottom:40px;">Complétez votre style <span
+                        style="font-size:14px; font-family:var(--font-sans); color:var(--gold); vertical-align:middle; margin-left:10px;">(IA
+                        Sélection)</span></h2>
+                <div class="reco-grid" id="ai-recommendations">
+                    <!-- AI Recs loaded via JS -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer Section -->
+    <footer
+        style="padding:100px 0 40px; background:var(--bg-main); border-top:1px solid var(--border); margin-top:100px;">
+        <div class="container">
+            <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:50px; margin-bottom:80px;">
+                <div>
+                    <h3 class="brand-name" style="margin-bottom:20px;">ANNAKHIL</h3>
+                    <p style="font-size:13px; color:var(--text-muted);">Maison de haute couture marocaine depuis 1990.
+                        L'excellence au service de l'homme élégant.</p>
+                </div>
+                <div>
+                    <h4 style="font-size:14px; margin-bottom:20px; text-transform:uppercase; letter-spacing:0.1em;">
+                        Boutique</h4>
+                    <ul style="list-style:none; font-size:13px;">
+                        <li style="margin-bottom:10px;"><a href="shop.html?category=Costumes"
+                                class="nav-link">Costumes</a></li>
+                        <li style="margin-bottom:10px;"><a href="shop.html?category=Vestes" class="nav-link">Vestes</a>
+                        </li>
+                        <li style="margin-bottom:10px;"><a href="shop.html?category=Accessoires"
+                                class="nav-link">Accessoires</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="font-size:14px; margin-bottom:20px; text-transform:uppercase; letter-spacing:0.1em;">Aide
+                    </h4>
+                    <ul style="list-style:none; font-size:13px;">
+                        <li style="margin-bottom:10px;"><a href="about.html" class="nav-link">À Propos</a></li>
+                        <li style="margin-bottom:10px;"><a href="delivery.html" class="nav-link">Livraison</a></li>
+                        <li style="margin-bottom:10px;"><a href="privacy-policy.html"
+                                class="nav-link">Confidentialité</a>
+                        </li>
+                        <li style="margin-bottom:10px;"><a href="index.html#contact" class="nav-link">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="font-size:14px; margin-bottom:20px; text-transform:uppercase; letter-spacing:0.1em;">
+                        Newsletter</h4>
+                    <div style="display:flex; border-bottom:1px solid var(--text-main); padding-bottom:10px;">
+                        <input type="email" placeholder="Votre email"
+                            style="background:transparent; border:none; outline:none; flex:1; font-size:12px;">
+                        <button style="background:transparent; border:none; cursor:pointer;">&rarr;</button>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:40px; font-size:12px; color:var(--text-muted);">
+                <p>&copy; 2025 Tailleur Annakhil Luxury. Tous droits réservés.</p>
+                <div style="display:flex; gap:20px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" height="15">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa"
+                        height="15">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard"
+                        height="15">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="cart-overlay"></div>
+    <div class="cart-drawer">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:40px;">
+            <h2 style="font-family:var(--font-serif); font-size:24px;">Votre Panier</h2>
+            <button type="button" class="close-cart-btn"
+                style="background:none; border:none; cursor:pointer; font-size:24px;">✕</button>
+        </div>
+        <div id="cart-items-list" style="flex:1; overflow-y:auto; margin-bottom:40px;">
+            <!-- Loaded via JS -->
+        </div>
+        <div style="border-top:1px solid var(--border); padding-top:20px;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:20px; font-weight:600;">
+                <span>Total</span>
+                <span id="cart-total-price">0 MAD</span>
+            </div>
+            <a href="checkout.html" class="btn-luxe primary" style="width:100%; text-decoration:none;">Commander</a>
+        </div>
+    </div>
+
+    <script src="js/ecommerce.js?v=3.0"></script>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const slug = params.get('slug');
+        let currentProduct = null;
+
+        async function initProductPage() {
+            if (!slug) {
+                // Silent redirect or clean error in prod
+                document.getElementById('product-content').innerHTML = '<p style="padding:20px;">Produit introuvable.</p>';
+                return;
+            }
+
+            const titleEl = document.getElementById('prod-title');
+
+            try {
+                // Zero-Trust: Cache Busting
+                const res = await fetch(`http://localhost:3030/api/products/${slug}?_t=${Date.now()}`);
+                if (!res.ok) throw new Error("Produit introuvable.");
+
+                const data = await res.json();
+                if (data.success) {
+                    currentProduct = data.data;
+                    document.title = `${currentProduct.title || 'Produit'} | Tailleur Annakhil`;
+
+                    // Populate UI with Defensive Checks
+                    titleEl.innerText = currentProduct.title || 'Produit Inconnu';
+                    document.getElementById('prod-category').innerText = currentProduct.category || 'Collection';
+                    document.getElementById('prod-price').innerText = (currentProduct.price !== undefined) ? `${currentProduct.price} ${currentProduct.currency || 'MAD'}` : 'Sur Devis';
+                    document.getElementById('prod-desc').innerText = currentProduct.description || 'Aucune description disponible.';
+
+                    const mainImg = currentProduct.mainImage || 'images/placeholder.jpg';
+                    document.getElementById('primary-image').src = mainImg;
+
+                    const stockEl = document.getElementById('prod-stock');
+                    stockEl.innerText = currentProduct.stock > 0 ? 'En Stock' : 'Épuisé';
+                    stockEl.style.color = currentProduct.stock > 0 ? '#00b894' : '#d63031';
+
+                    if (currentProduct.stock <= 0) {
+                        const btn = document.getElementById('add-to-cart-btn');
+                        btn.disabled = true;
+                        btn.innerText = "Rupture de stock";
+                        btn.style.opacity = "0.5";
+                        btn.style.cursor = "not-allowed";
+                    }
+
+                    // Thumbs
+                    const thumbGrid = document.getElementById('thumb-grid');
+                    if (thumbGrid) {
+                        const images = (currentProduct.images && currentProduct.images.length) ? currentProduct.images : [mainImg];
+                        thumbGrid.innerHTML = images.map((img, idx) => `
+                            <div class="thumb ${idx === 0 ? 'active' : ''}" data-img="${img}">
+                                <img src="${img}" alt="Vue ${idx + 1}">
+                            </div>
+                        `).join('');
+
+                        thumbGrid.querySelectorAll('.thumb').forEach(t => {
+                            t.addEventListener('click', () => changeMainImage(t.dataset.img, t));
+                        });
+                    }
+
+                    loadRecommendations(currentProduct.category);
+                } else {
+                    titleEl.innerText = "Produit inexistant";
+                }
+            } catch (err) {
+                console.error(err);
+                titleEl.innerText = "Erreur de chargement";
+            }
+        }
+
+        // Bind Cart
+        document.getElementById('add-to-cart-btn').addEventListener('click', () => {
+            if (!currentProduct) return;
+            const pId = currentProduct._id || currentProduct.id;
+            const pPrice = parseFloat(currentProduct.price.toString().replace(/[^0-9.]/g, '')) || 0;
+            window.Ecommerce.addToCart({
+                id: pId,
+                title: currentProduct.title,
+                price: pPrice,
+                mainImage: currentProduct.mainImage,
+                currency: currentProduct.currency || 'MAD'
+            });
+        });
+
+        function changeMainImage(src, el) {
+            const mainImg = document.getElementById('primary-image');
+            mainImg.style.opacity = '0';
+            setTimeout(() => {
+                mainImg.src = src;
+                mainImg.style.opacity = '1';
+            }, 300);
+            document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        async function loadRecommendations(currentCat) {
+            try {
+                // Zero-Trust: Cache Busting for Recs
+                const res = await fetch(`http://localhost:3030/api/products?category=${currentCat}&limit=4&_t=${Date.now()}`);
+                const data = await res.json();
+                const recoGrid = document.getElementById('ai-recommendations');
+                if (data.success && data.data) {
+                    const items = data.data.filter(p => p.slug !== slug).slice(0, 4);
+                    recoGrid.innerHTML = items.map(p => `
+                        <div class="product-card" data-slug="${p.slug}">
+                            <div class="product-card-image">
+                                <img src="${p.mainImage}" alt="${p.title}">
+                            </div>
+                            <h3>${p.title}</h3>
+                            <p class="product-card-price">${p.price} ${p.currency}</p>
+                        </div>
+                    `).join('');
+                } else {
+                    recoGrid.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:#666;">D\'autres modèles uniques à découvrir en boutique.</p>';
+                }
+            } catch (err) { console.error(err); }
+        }
+
+        initProductPage();
+    </script>
+</body>
+
+</html>

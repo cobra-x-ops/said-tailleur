@@ -1,0 +1,52 @@
+/* Logo Styling */
+.logo {
+    display: flex;
+    align-items: center;
+    z-index: 1001;
+}
+
+.logo-img {
+    height: 60px;
+    /* Adjust based on your preference */
+    width: auto;
+    transition: all 0.3s ease;
+    filter: brightness(1.1);
+    /* Slightly brighter for dark background */
+}
+
+/* Shrink logo when scrolled */
+header.scrolled .logo-img {
+    height: 45px;
+}
+
+/* Light mode adjustment */
+[data-theme="light"] .logo-img {
+    filter: brightness(0.95);
+}
+
+/* Hover effect */
+.logo-img:hover {
+    transform: scale(1.05);
+}
+
+/* Preloader logo */
+.preload-logo {
+    width: 200px;
+    height: auto;
+}
+
+.preload-logo img {
+    width: 100%;
+    height: auto;
+    animation: pulse 2s infinite;
+}
+
+@media (max-width: 768px) {
+    .logo-img {
+        height: 50px;
+    }
+
+    header.scrolled .logo-img {
+        height: 40px;
+    }
+}
